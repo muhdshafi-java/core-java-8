@@ -77,24 +77,51 @@ public class InnerClassScope {
 }
 ``` 
 
- Anonymmous - Modify Variable
+ Method Local Inner class -  Local Variable
  ```java
 public class InnerClassScope {
-	String test = "Hello A";
-	public static void main(String[] args) {
-		InnerClassScope driver = new InnerClassScope();
-		MyRunnable r = driver.new MyRunnable();
+
+	public void test() {
+		String test = "Hello A";
+		Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				test = "Modified"; //Local variable test defined in an enclosing scope must be final or effectively final
+				System.out.println("MyRunnable.run() :"+test);
+			}
+		};
 		r.run();
 	}
-	class MyRunnable implements Runnable{
-		@Override
-		public void run() {
-			test = "Modified"; 
-			System.out.println("MyRunnable.run() :"+test);//MyRunnable.run() Modified
-		}
+	
+	public static void main(String[] args) {
+		InnerClassScope driver = new InnerClassScope();
+		driver.test();
 	}
 }
 ``` 
+
+Lambda
+ ```java
+public class InnerClassScope {
+	String test = "Hello A";
+
+	public void test() {
+		String test = "Hello A";
+		
+		Runnable r = () -> {
+			test = "Modifed";
+			System.out.println("MyRunnable.run() :" + test);
+		};
+		r.run();
+	}
+
+	public static void main(String[] args) {
+		InnerClassScope driver = new InnerClassScope();
+		driver.test();
+	}
+}
+``` 
+
 
 ## Method Reference
 ## Stream
