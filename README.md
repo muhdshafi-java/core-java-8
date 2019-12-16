@@ -121,7 +121,53 @@ public class InnerClassScope {
 	}
 }
 ``` 
+Lambda vs Anonymous Local Variable with same name as that in enclosing scope
+ ```java
+public class InnerClassScope {
 
+	public void test() {
+		String test = "Hello A";
+		Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				String test = "Hello B";//Allowed
+				System.out.println("MyRunnable.run() :"+test);
+			}
+		};
+		r.run();
+	}
+	
+	public static void main(String[] args) {
+		InnerClassScope driver = new InnerClassScope();
+		driver.test();
+	}
+}
+
+VS
+
+public class InnerClassScope {
+	public void test() {
+		String test = "Hello A";
+		Runnable r = () -> {
+			String test = "Hello B";// Not Allowed, Lambda expression in Java doesn't have a scope of its own
+			System.out.println("MyRunnable.run() :" + test);
+		};
+		r.run();
+	}
+
+	public static void main(String[] args) {
+		InnerClassScope driver = new InnerClassScope();
+		driver.test();
+	}
+}
+
+		int i=0;
+		
+		{
+			int i=0;
+		}
+
+``` 
 
 ## Method Reference
 ## Stream
