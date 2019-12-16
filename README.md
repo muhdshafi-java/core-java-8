@@ -71,28 +71,26 @@ public class InnerClassScope {
 		@Override
 		public void run() {
 			String test = "Hello C";
-			System.out.println("MyRunnable.run() "+test);//MyRunnable.run() Hello A
+			System.out.println("MyRunnable.run() "+test);//MyRunnable.run() Hello B
 		}
 	}
 }
 ``` 
- Lexical Scope Shadowing - Modify Local Variable
+
+ Anonymmous - Modify Variable
  ```java
 public class InnerClassScope {
 	String test = "Hello A";
-	
 	public static void main(String[] args) {
 		InnerClassScope driver = new InnerClassScope();
 		MyRunnable r = driver.new MyRunnable();
 		r.run();
 	}
-	
 	class MyRunnable implements Runnable{
-		String test = "Hello B";
 		@Override
 		public void run() {
-			String test = "Hello C";
-			System.out.println("MyRunnable.run() "+test);//MyRunnable.run() Hello A
+			test = "Modified"; 
+			System.out.println("MyRunnable.run() :"+test);//MyRunnable.run() Modified
 		}
 	}
 }
