@@ -33,6 +33,7 @@ class MyRunnable implements Runnable{
 }
 ```
  #### Inner Class
+ Lexical Scope
  ```java
 public class InnerClassScope {
 	
@@ -45,16 +46,15 @@ public class InnerClassScope {
 	}
 	
 	class MyRunnable implements Runnable{
-		String test = "Hello B";
 		@Override
 		public void run() {
-			System.out.println("MyRunnable.run() "+test);
+			System.out.println("MyRunnable.run() "+test);//MyRunnable.run() Hello A
 		}
 	}
 	
 }
 ```
-The Inner class instance variable shadow the instance variable of Outer Class.
+
 ## Method Reference
 ## Stream
 
