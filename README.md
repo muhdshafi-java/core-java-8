@@ -31,7 +31,8 @@ class MyRunnable implements Runnable{
 	}
 	
 }
-```
+``` 
+
  #### Inner Class
  Lexical Scope
  ```java
@@ -53,7 +54,8 @@ public class InnerClassScope {
 	}
 	
 }
-```
+``` 
+
 
 ## Method Reference
 ## Stream
