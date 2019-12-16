@@ -55,7 +55,48 @@ public class InnerClassScope {
 	
 }
 ``` 
-
+ Lexical Scope Shadowing
+ ```java
+public class InnerClassScope {
+	String test = "Hello A";
+	
+	public static void main(String[] args) {
+		InnerClassScope driver = new InnerClassScope();
+		MyRunnable r = driver.new MyRunnable();
+		r.run();
+	}
+	
+	class MyRunnable implements Runnable{
+		String test = "Hello B";
+		@Override
+		public void run() {
+			String test = "Hello C";
+			System.out.println("MyRunnable.run() "+test);//MyRunnable.run() Hello A
+		}
+	}
+}
+``` 
+ Lexical Scope Shadowing - Modify Local Variable
+ ```java
+public class InnerClassScope {
+	String test = "Hello A";
+	
+	public static void main(String[] args) {
+		InnerClassScope driver = new InnerClassScope();
+		MyRunnable r = driver.new MyRunnable();
+		r.run();
+	}
+	
+	class MyRunnable implements Runnable{
+		String test = "Hello B";
+		@Override
+		public void run() {
+			String test = "Hello C";
+			System.out.println("MyRunnable.run() "+test);//MyRunnable.run() Hello A
+		}
+	}
+}
+``` 
 
 ## Method Reference
 ## Stream
